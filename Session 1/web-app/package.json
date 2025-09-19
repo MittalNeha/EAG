@@ -1,0 +1,17 @@
+{
+  "name": "arxiv-notes-webapp",
+  "version": "1.0.0",
+  "description": "Web app for arXiv paper notes using shared React components.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npx esbuild src/index.js --bundle --outfile=public/bundle.js --servedir=public --loader:.js=jsx --external:react --external:react-dom",
+    "build": "npx esbuild src/index.js --bundle --outfile=public/bundle.js --minify --loader:.js=jsx --external:react --external:react-dom"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.17.19"
+  }
+}
