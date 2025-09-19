@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OAuth Redirect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .loading {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">Processing authentication...</div>
+    
+    <script>
+        // Extract token from URL fragment
+        const hash = window.location.hash;
+        const accessToken = hash.match(/access_token=([^&]+)/);
+        
+        if (accessToken) {
+            // Send token back to parent window
+            if (window.opener) {
+                window.opener.postMessage({
+                    type: 'AUTH_SUCCESS',
+                    token: accessToken[1]
+                }, window.location.origin);
+            }
+            document.body.innerHTML = '<div style="color: green;">Authentication successful! You can close this window.</div>';
+        } else {
+            // Check for error
+            const error = hash.match(/error=([^&]+)/);
+            if (error) {
+                if (window.opener) {
+                    window.opener.postMessage({
+                        type: 'AUTH_ERROR',
+                        error: error[1]
+                    }, window.location.origin);
+                }
+                document.body.innerHTML = '<div style="color: red;">Authentication failed: ' + error[1] + '</div>';
+            } else {
+                if (window.opener) {
+                    window.opener.postMessage({
+                        type: 'AUTH_ERROR',
+                        error: 'No token received'
+                    }, window.location.origin);
+                }
+                document.body.innerHTML = '<div style="color: red;">Authentication failed: No token received</div>';
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+

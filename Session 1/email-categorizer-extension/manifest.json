@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Email Categorizer & Daily Report",
+  "version": "1.0",
+  "description": "Categorizes emails and generates daily reports with summaries",
+  "permissions": [
+    "storage",
+    "identity",
+    "scripting",
+    "alarms",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://gmail.googleapis.com/*",
+    "https://www.googleapis.com/*"
+  ],
+  "oauth2": {
+    "client_id": "784076312733-ksb9knmq6tj94df9qms3j0ubvvke3ter.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/gmail.readonly"
+    ]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Email Categorizer",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["auth.html", "auth.js", "redirect.html", "local-server.html", "local-server.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

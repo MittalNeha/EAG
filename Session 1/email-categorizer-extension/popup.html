@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Categorizer</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📧 Email Categorizer</h1>
+            <div class="date-display" id="dateDisplay"></div>
+        </header>
+
+        <div class="controls">
+            <button id="fetchEmailsBtn" class="btn btn-primary">
+                <span class="btn-icon">🔄</span>
+                Fetch Today's Emails
+            </button>
+            <button id="refreshReportBtn" class="btn btn-secondary">
+                <span class="btn-icon">📊</span>
+                Refresh Report
+            </button>
+        </div>
+
+        <div class="status" id="status">
+            <div class="status-indicator" id="statusIndicator"></div>
+            <span id="statusText">Ready to fetch emails</span>
+        </div>
+
+        <div class="summary-cards" id="summaryCards">
+            <!-- Summary cards will be populated by JavaScript -->
+        </div>
+
+        <div class="report-section" id="reportSection" style="display: none;">
+            <h2>📋 Daily Report</h2>
+            <div class="report-content" id="reportContent">
+                <!-- Report content will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="category-details" id="categoryDetails" style="display: none;">
+            <h3 id="categoryTitle"></h3>
+            <div class="email-list" id="emailList">
+                <!-- Email list will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="last-updated" id="lastUpdated"></div>
+            <div class="email-count" id="emailCount"></div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
+
+
+

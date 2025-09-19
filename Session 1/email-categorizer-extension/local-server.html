@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gmail OAuth - Local Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .auth-button {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 20px;
+        }
+        .auth-button:hover {
+            background: #3367d6;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .instructions {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gmail Authentication</h1>
+    <p>This extension needs access to your Gmail to categorize emails.</p>
+    
+    <div class="instructions">
+        <h3>Setup Instructions:</h3>
+        <ol>
+            <li>Make sure you have a web application OAuth client in Google Cloud Console</li>
+            <li>Add <code>http://localhost:8080</code> as an authorized redirect URI</li>
+            <li>Start a local server on port 8080 (see instructions below)</li>
+            <li>Click the button below to authenticate</li>
+        </ol>
+    </div>
+    
+    <button id="authButton" class="auth-button">Authenticate with Google</button>
+    
+    <div id="status" class="status" style="display: none;"></div>
+    
+    <div class="instructions">
+        <h3>To start a local server:</h3>
+        <p><strong>Python 3:</strong> <code>python -m http.server 8080</code></p>
+        <p><strong>Python 2:</strong> <code>python -m SimpleHTTPServer 8080</code></p>
+        <p><strong>Node.js:</strong> <code>npx http-server -p 8080</code></p>
+        <p>Then visit: <a href="http://localhost:8080" target="_blank">http://localhost:8080</a></p>
+    </div>
+    
+    <script src="local-server.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Redirect URI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .redirect-uri {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            word-break: break-all;
+            margin: 20px 0;
+        }
+        .copy-button {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Extension Redirect URI</h1>
+    <p>Copy this redirect URI and add it to your Google Cloud Console OAuth client:</p>
+    
+    <div id="redirectUri" class="redirect-uri">Loading...</div>
+    
+    <button id="copyButton" class="copy-button">Copy to Clipboard</button>
+    
+    <script>
+        const redirectUri = chrome.identity.getRedirectURL();
+        document.getElementById('redirectUri').textContent = redirectUri;
+        
+        document.getElementById('copyButton').addEventListener('click', () => {
+            navigator.clipboard.writeText(redirectUri).then(() => {
+                alert('Redirect URI copied to clipboard!');
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+

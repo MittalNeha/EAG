@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "arXiv Tab Tracker & OneNote Notes",
+  "version": "1.0",
+  "description": "Tracks open arXiv papers and connects to OneNote for notes.",
+  "permissions": [
+    "tabs",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://arxiv.org/*",
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "simple-popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["persistent-view.html", "persistent-view.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
