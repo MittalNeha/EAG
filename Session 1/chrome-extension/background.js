@@ -2,7 +2,7 @@
 
 // Gemini AI configuration
 const GEMINI_API_KEY = 'AIzaSyAwbRKQBrc8HPwpzIKlBFv7XvjiZXdl-3o';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 // Function to analyze paper with Gemini AI
 async function analyzeWithGemini(abstract, paperTitle) {
@@ -47,19 +47,23 @@ Format your response as JSON:
     }
 
     const data = await response.json();
+    console.log('Gemini AI response:', response);
     const aiResponse = data.candidates[0].content.parts[0].text;
     
     // Try to parse JSON response
     try {
-      return JSON.parse(aiResponse);
+      //aiResponse.replace(/```json|```/g, '').trim();
+      console.log('Gemini AI response:', aiResponse);
+      return JSON.parse(aiResponse.replace(/```json|```/g, '').trim());
     } catch (parseError) {
+      console.error('Catch of JSON parsing of Gemini AI response:', parseError);
       // Fallback if JSON parsing fails
       return {
-        summary: aiResponse.substring(0, 200) + "...",
+        summary: aiResponse.summary, //.substring(0, 200) + "...",
         keyTerms: ["AI", "Research", "Technology"],
         researchField: "Computer Science",
         complexity: "Intermediate",
-        contributions: "Novel research contributions"
+        contributions: data //"Novel research contributions"
       };
     }
   } catch (error) {

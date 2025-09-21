@@ -29,10 +29,11 @@ Format your response as JSON:
   "contributions": "Main contributions here"
 }`;
 
-            const response = await fetch(`${this.apiUrl}?key=${this.apiKey}`, {
+            const response = await fetch(`${this.apiUrl}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-goog-api-key: GEMINI_API_KEY',
                 },
                 body: JSON.stringify({
                     contents: [{
@@ -44,7 +45,8 @@ Format your response as JSON:
             });
 
             if (!response.ok) {
-                throw new Error(`Gemini API error: ${response.status}`);
+                console.error('Gemini AI error in response: ${response.status});
+                throw new Error(`Gemini API error in response: ${response.status}`);
             }
 
             const data = await response.json();

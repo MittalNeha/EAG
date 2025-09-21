@@ -1,2 +1,3 @@
 venv/
 chrome-extension/node_modules
+chrome-extension/.env.txt
